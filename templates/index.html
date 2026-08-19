@@ -298,6 +298,16 @@
         <option value="Beauty Care">Beauty Care — Contact us</option>
     </optgroup>
 </select>
+<div class="form-group">
+    <label for="whatsapp">Send Booking To</label>
+
+    <select id="whatsapp" name="whatsapp" required>
+        <option value="">Choose WhatsApp number</option>
+        <option value="2348123791767">WhatsApp 1 — 08123791767</option>
+        <option value="2347060929413">WhatsApp 2 — 07060929413</option>
+        <option value="2349162036697">WhatsApp 3 — 09162036697</option>
+    </select>
+</div>
             </div>
 
             <div class="form-row">
@@ -453,9 +463,15 @@ function sendToWhatsApp(event) {
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
     const service = document.getElementById("service").value;
+    const whatsapp = document.getElementById("whatsapp").value;
     const date = document.getElementById("date").value;
     const time = document.getElementById("time").value;
     const message = document.getElementById("message").value;
+
+    if (!whatsapp) {
+        alert("Please choose a WhatsApp number to send the appointment to.");
+        return;
+    }
 
     const whatsappMessage =
         "✨ *GLORIOUS BEAUTY SALON* ✨\n\n" +
@@ -469,11 +485,12 @@ function sendToWhatsApp(event) {
         "Thank you!";
 
     const whatsappURL =
-        "https://wa.me/2347060929413?text=" +
-        encodeURIComponent(whatsappMessage);
+        "https://wa.me/" + whatsapp +
+        "?text=" + encodeURIComponent(whatsappMessage);
 
     window.open(whatsappURL, "_blank");
 }
+
 </script>
 </body>
 
